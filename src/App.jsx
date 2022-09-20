@@ -30,13 +30,20 @@ const data = {
 function App() {
   return (
     <div>
-      <Component />
+      <Component data={data} />
     </div>
   );
 }
 
-function Component() {
+function Component({ data }) {
   const Item = components[data.tag];
+  if (typeof data.props.children == 'object') {
+    return (
+      <Item {...data.props}>
+        <Component data={data.props.children} />
+      </Item>
+    );
+  }
   return (
     <div className='App'>
       <Item {...data.props} />
