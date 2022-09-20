@@ -3,17 +3,39 @@ import React from 'react';
 import components from './components';
 
 const data = {
-  tag: 'Button',
+  tag: 'Paper',
   props: {
-    text: 'Hello World',
-    variant: 'contained',
-    disabled: false,
-    color: 'warning',
-    size: 'small',
+    elevation: 3,
+    square: false,
+    style: { padding: '100px' },
+    children: {
+      tag: 'Paper',
+      props: {
+        elevation: 3,
+        square: false,
+        style: { padding: '100px' },
+        children: {
+          tag: 'Button',
+          props: {
+            text: 'Hello World',
+            variant: 'contained',
+            color: 'warning',
+          },
+        },
+      },
+    },
   },
 };
 
 function App() {
+  return (
+    <div>
+      <Component />
+    </div>
+  );
+}
+
+function Component() {
   const Item = components[data.tag];
   return (
     <div className='App'>
